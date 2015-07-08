@@ -34,6 +34,7 @@ public class Enigma extends JFrame implements ItemListener, ActionListener, KeyL
 	private JTextField txtInput;
 	private JTextField txtOutput;
 	private JTextField txtOrigin;
+	private EnigmaMachine enigma;
 
 	public Enigma() {
 		changeOK = true;
@@ -100,6 +101,7 @@ public class Enigma extends JFrame implements ItemListener, ActionListener, KeyL
 		p2.add(p4);
 		getContentPane().add(p2);
 		
+		enigma = new EnigmaMachine(generatePlugBoard());
 		
 	}
 
@@ -118,6 +120,7 @@ public class Enigma extends JFrame implements ItemListener, ActionListener, KeyL
 				combo[otherIndex].setSelectedIndex(index);
 				combo[otherIndex].setEnabled(false);
 				combo[index].setEnabled(false);
+				enigma.setPlugBoard(generatePlugBoard());
 			} else {
 				JOptionPane.showMessageDialog(this, "Plug ja ligado", "ERRO", JOptionPane.ERROR_MESSAGE);
 				combo[index].setSelectedIndex(index);
@@ -164,6 +167,7 @@ public class Enigma extends JFrame implements ItemListener, ActionListener, KeyL
 			e.consume();
 		} else {
 			txtOrigin.setText(txtOrigin.getText() + aux);
+			txtOutput.setText(txtOutput.getText() + enigma.Encode(aux));
 		}
 		txtInput.setText("");
 		txtInput.setFocusable(true);
