@@ -69,7 +69,7 @@ public class Enigma extends JFrame implements ItemListener, ActionListener, KeyL
 		p7 = new JPanel();
 		p7.setLayout(new FlowLayout(1));
 
-		cbRotorAnel = new JComboBox[3];
+		/*cbRotorAnel = new JComboBox[3];
 		lblRotorAnel = new JLabel[3];
 		lblRotorAnelLegend = new JLabel("Posição Inicial dos Aneis");
 		p7.add(lblRotorAnelLegend);
@@ -85,7 +85,7 @@ public class Enigma extends JFrame implements ItemListener, ActionListener, KeyL
 			p7.add(lblRotorAnel[i]);
 			p7.add(cbRotorAnel[i]);
 		}
-		
+		*/
 		p8 = new JPanel();
 		p8.setLayout(new FlowLayout(1));
 
@@ -184,7 +184,7 @@ public class Enigma extends JFrame implements ItemListener, ActionListener, KeyL
 	public void itemStateChanged(ItemEvent e) {
 		boolean plugs = false;
 		boolean start = false;
-		boolean anel = false;
+		//boolean anel = false;
 
 		for (JComboBox<String> jComboBox : cbPlugs) {
 			if (jComboBox.equals(e.getSource()))
@@ -197,10 +197,10 @@ public class Enigma extends JFrame implements ItemListener, ActionListener, KeyL
 		}
 
 		
-		for (JComboBox<String> jComboBox : cbRotorAnel) {
+		/*for (JComboBox<String> jComboBox : cbRotorAnel) {
 			if (jComboBox.equals(e.getSource()))
 				anel = !anel;
-		}
+		}*/
 		
 		if (plugs) {
 			changeOK = !changeOK;
@@ -230,11 +230,11 @@ public class Enigma extends JFrame implements ItemListener, ActionListener, KeyL
 		else if(start)
 		{
 			enigma.setPositionRotor(cbRotorStart[0].getSelectedIndex(), cbRotorStart[1].getSelectedIndex(), cbRotorStart[2].getSelectedIndex());
-		}
+		}/*
 		else if(anel)
 		{
 			enigma.setPositionAnel(cbRotorAnel[0].getSelectedIndex(), cbRotorAnel[1].getSelectedIndex(), cbRotorAnel[2].getSelectedIndex());
-		}
+		}*/
 	}
 
 	@Override
@@ -253,9 +253,9 @@ public class Enigma extends JFrame implements ItemListener, ActionListener, KeyL
 			cbRotorStart[0].setSelectedIndex(0);
 			cbRotorStart[1].setSelectedIndex(0);
 			cbRotorStart[2].setSelectedIndex(0);
-			cbRotorAnel[0].setSelectedIndex(0);
+			/*cbRotorAnel[0].setSelectedIndex(0);
 			cbRotorAnel[1].setSelectedIndex(0);
-			cbRotorAnel[2].setSelectedIndex(0);
+			cbRotorAnel[2].setSelectedIndex(0);*/
 
 		}
 
@@ -280,7 +280,7 @@ public class Enigma extends JFrame implements ItemListener, ActionListener, KeyL
 			txtOrigin.setText(txtOrigin.getText() + aux);
 			txtOutput.setText(txtOutput.getText() + enigma.Encode(aux,cbRotorOrder[2].getSelectedIndex(),cbRotorOrder[1].getSelectedIndex(),cbRotorOrder[0].getSelectedIndex()));
 			int[] positions = enigma.getPositionRotor();
-			
+			System.out.println(txtOutput.getText());
 			for (int i = 0; i < positions.length; i++) {
 				cbRotorStart[i].setSelectedIndex(positions[i]);
 			}
